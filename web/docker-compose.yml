@@ -1,0 +1,17 @@
+version: "3.3"
+
+services:
+  jsontoww-web:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: jsontoww-web
+    container_name: jsontoww-web
+    ports:
+      - 8201:80
+    networks:
+      - jsontoww-web-net
+    restart: always
+
+networks:
+  jsontoww-web-net:

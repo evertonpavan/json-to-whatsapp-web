@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+  jsontoww-server:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      target: 'development'
+    image: jsontoww-server
+    container_name: jsontoww-server
+    ports:
+      - 8302:8302
+    restart: always
+    depends_on:
+       - jsontoww-database
+    networks:
+       - jsontoww-net
+    env_file:
+      - .env   
+
+  jsontoww-database:
+    image: postgres:bullseye
+    container_name:  jsontoww-database
+    ports: 
+     - 8303:5432
+    restart: always
+    volumes:
+     - jsontoww_pgdata:/var/lib/postgresql/data
+     - ./docker_postgres_init.sh:/docker-entrypoint-initdb.d/docker_postgres_init.sh
+    env_file:
+      - .env
+    # environment:
+    #   - POSTGRESQL_USERNAME=jsontoww
+    #   - POSTGRESQL_PASSWORD=jsontoww
+    #   - POSTGRESQL_DATABASE=jsontoww
+    networks:
+     -  jsontoww-net
+    stdin_open: true
+    expose:
+      - '8303'
+
+volumes:
+  jsontoww_pgdata:
+    driver: local
+
+networks:
+  jsontoww-net:
+    driver: bridge

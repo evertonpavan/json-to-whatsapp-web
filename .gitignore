@@ -1,0 +1,10 @@
+# Server
+server/node_modules
+server/.vscode
+server/.env
+
+# Web
+web/node_modules
+web/node_modules
+web/.vscode
+web/.env

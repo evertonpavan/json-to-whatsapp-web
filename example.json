@@ -1,0 +1,13 @@
+{   
+    "message": "Hello World!",
+    "contacts": [
+        {
+            "name": "",
+            "phone": ""
+        },
+        {
+            "name": "",
+            "phone": ""
+        }
+    ]
+}
